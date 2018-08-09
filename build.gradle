@@ -1,0 +1,28 @@
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin:'application'
+
+mainClassName = "com.zygon.data1.provider.CoinbaseTester"
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+//    maven {
+//	url "http://mvn.riptano.com/content/repositories/public"
+//    }
+    maven {
+	url "https://github.com/s7/mvnrepo/raw/master"
+    }
+}
+
+dependencies {
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/output/lib"
+    from configurations.runtime
+}
+
