@@ -5,14 +5,10 @@
  */
 package com.zygon.smartmarket.campaign.execute;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.AbstractScheduledService;
-import com.zygon.smartmarket.Prospect;
 import com.zygon.smartmarket.campaign.Segment;
 import com.zygon.smartmarket.sender.ProspectSender;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -24,19 +20,10 @@ public class SegmentManager extends AbstractScheduledService {
 
     private final Segment segment;
     private final ProspectSender sender;
-    @Deprecated // move to segmentImpl
-    private final List<Prospect> prospects;
 
-    public SegmentManager(Segment segment, ProspectSender sender, List<Prospect> prospects) {
+    public SegmentManager(Segment segment, ProspectSender sender) {
         this.segment = Objects.requireNonNull(segment);
         this.sender = Objects.requireNonNull(sender);
-        this.prospects = prospects == null
-                ? Collections.emptyList()
-                : ImmutableList.copyOf(prospects);
-    }
-
-    public List<Prospect> getProspects() {
-        return prospects;
     }
 
     public Segment getSegment() {

@@ -23,8 +23,7 @@ public final class SegmentImpl implements Segment {
     private final List<Prospect> prospects;
     private final SendRate sendRate;
     private final String message;
-
-    private long lastSent = 0;
+    private final long lastSent;
 
     public SegmentImpl(String name, List<Prospect> prospects, SendRate sendRate, String message, long lastSent) {
         this.name = Objects.requireNonNull(name);
@@ -36,6 +35,7 @@ public final class SegmentImpl implements Segment {
         this.lastSent = lastSent;
     }
 
+    // TBD: convert to factory?
     public SegmentImpl(String name, List<Prospect> prospects, SendRate sendRate, String message) {
         this(name, prospects, sendRate, message, 0);
     }
@@ -65,7 +65,7 @@ public final class SegmentImpl implements Segment {
         return lastSent;
     }
 
-    public void setLastSent(long lastSent) {
-        this.lastSent = lastSent;
+    public Segment setLastSent(long lastSent) {
+        return new SegmentImpl(name, prospects, sendRate, message, lastSent);
     }
 }

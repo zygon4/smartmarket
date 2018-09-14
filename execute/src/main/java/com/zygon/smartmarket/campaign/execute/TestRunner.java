@@ -23,7 +23,8 @@ public class TestRunner {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws Exception {
-        List<Prospect> prospects = ProspectLoader.load(Paths.get("/tmp/prospects.csv"));
+        List<Prospect> prospects = ProspectLoader.load(
+                Paths.get("/home/zygon/src/github/smartmarket/execute/src/main/resources/prospects.csv"));
         for (Prospect prospect : prospects) {
             System.out.println(prospect);
         }
@@ -32,7 +33,7 @@ public class TestRunner {
 
         SegmentManager segmentManager = new SegmentManager(segment, (prospect, message) -> {
             System.out.println("Sending message " + message + " to prospect " + prospect);
-        }, prospects);
+        });
 
         segmentManager.startAsync();
 
