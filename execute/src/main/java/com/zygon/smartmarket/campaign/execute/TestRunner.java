@@ -8,6 +8,7 @@ package com.zygon.smartmarket.campaign.execute;
 import com.zygon.smartmarket.Prospect;
 import com.zygon.smartmarket.campaign.Segment;
 
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -23,8 +24,8 @@ public class TestRunner {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws Exception {
-        List<Prospect> prospects = ProspectLoader.load(
-                Paths.get("/home/zygon/src/github/smartmarket/execute/src/main/resources/prospects.csv"));
+        URL prospectsURL = TestRunner.class.getResource("prospects.csv");
+        List<Prospect> prospects = ProspectLoader.load(Paths.get(prospectsURL.toURI()));
         for (Prospect prospect : prospects) {
             System.out.println(prospect);
         }
